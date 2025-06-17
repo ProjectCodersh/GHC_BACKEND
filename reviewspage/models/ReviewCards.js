@@ -19,6 +19,10 @@ const reviewCardsSchema = new mongoose.Schema({
         required: true,
         min: 1,
         max: 5
+    },
+    imagePath: {
+        type: String,
+        required: false
     }
 }, { timestamps: true });
 

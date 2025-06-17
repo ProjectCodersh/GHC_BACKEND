@@ -1,5 +1,3 @@
-
-
 const ReviewCards = require('../models/ReviewCards');
 
 // Get all reviews
@@ -12,11 +10,22 @@ const getReviewCards = async (req, res) => {
     }
 };
 
-// Add a new review (optional, for admin panel or testing)
+// Add a new review
 const addReviewCards = async (req, res) => {
-    const { name, category, text } = req.body;
+    const { name, category, text, rating } = req.body;
+
+    // Get image path if uploaded
+    const imagePath = req.file ? `/uploads/${req.file.filename}` : undefined;
+
     try {
-        const newReviewCards = new ReviewCards({ name, category, text });
+        const newReviewCards = new ReviewCards({
+            name,
+            category,
+            text,
+            rating,
+            imagePath
+        });
+
         await newReviewCards.save();
         res.status(201).json(newReviewCards);
     } catch (err) {

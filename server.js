@@ -13,6 +13,9 @@ const teamGroupImageRoutes = require('./teamspage/routes/teamGroupImage');
 // Reviews Page
 const reviewHeroRoutes = require('./reviewspage/routes/reviewHero');
 const reviewCardsRoute = require('./reviewspage/routes/reviewCardsRoute');
+// Blog Page
+const blogRoutes = require('./blogpage/routes/blogRoutes');
+
 
 
 // Middleware
@@ -34,14 +37,14 @@ mongoose.connect('mongodb://127.0.0.1:27017/greenhammer', {
     .catch(err => console.log(err));
 
 // Routes
-app.use('/api/videos', videoRoutes);
+app.use('/api/videos', videoRoutes);    // Videos Page
 app.use('/api/videosectioninfo', videoSectionInfoRoutes);
-app.use('/api/teamshero', teamsHeroRoutes);
-app.use('/api/teammembers', teamMemberRoutes); // ✅ New route
+app.use('/api/teamshero', teamsHeroRoutes);     // Teams Page
+app.use('/api/teammembers', teamMemberRoutes);
 app.use('/api/teamgroupimage', teamGroupImageRoutes);
-app.use('/api/reviewhero', reviewHeroRoutes);
+app.use('/api/reviewhero', reviewHeroRoutes);   // Reviews Page
 app.use('/api/reviewcards', reviewCardsRoute);
-
+app.use('/api/blogs', blogRoutes); // Blog Page
 
 const PORT = 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
