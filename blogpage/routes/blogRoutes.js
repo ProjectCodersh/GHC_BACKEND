@@ -1,17 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const { getBlogs, getBlogById, getBlogByCustomId, addBlog } = require('../controllers/blogController');
+const { getBlogs, getBlogById, getBlogBySlug, getBlogByTitle, addBlog } = require('../controllers/blogController');
 
-// Get all blogs
+// Get all blogs (sorted by latest date)
 router.get('/', getBlogs);
 
-// Get blog by custom ID (recommended)
-router.get('/id/:id', getBlogByCustomId);
+// Get blog by slug (URL-friendly version of title)
+router.get('/slug/:slug', getBlogBySlug);
 
-// Get blog by MongoDB _id (if needed for backward compatibility)
+// Get blog by exact title
+router.get('/title/:title', getBlogByTitle);
+
+// Get blog by MongoDB _id (kept for backward compatibility)
 router.get('/:id', getBlogById);
 
-// Add new blog (Admin only)
+// Add new blog
 router.post('/', addBlog);
 
 module.exports = router;
