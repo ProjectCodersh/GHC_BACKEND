@@ -18,6 +18,8 @@ const reviewCardsRoute = require('./reviewspage/routes/reviewCardsRoute');
 const blogRoutes = require('./blogpage/routes/blogRoutes');
 // Services Page
 const serviceRoutes = require('./servicespage/routes/service');
+// Photos Page
+const mediaRoutes = require('./photospage/routes/media');
 
 
 // Middleware
@@ -49,7 +51,10 @@ app.use('/api/reviewhero', reviewHeroRoutes);   // Reviews Page
 app.use('/api/reviewcards', reviewCardsRoute);
 app.use('/api/blogs', blogRoutes); // Blog Page
 app.use('/api/services', serviceRoutes); // Services Page
+app.use('/api/media', mediaRoutes); // Photos Page
 
 
 const PORT = 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+
