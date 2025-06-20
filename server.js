@@ -20,6 +20,7 @@ const blogRoutes = require('./blogpage/routes/blogRoutes');
 const serviceRoutes = require('./servicespage/routes/service');
 // Photos Page
 const mediaRoutes = require('./photospage/routes/media');
+const mediaHeroRoutes = require('./photospage/routes/mediaHero');
 
 
 // Middleware
@@ -52,6 +53,7 @@ app.use('/api/reviewcards', reviewCardsRoute);
 app.use('/api/blogs', blogRoutes); // Blog Page
 app.use('/api/services', serviceRoutes); // Services Page
 app.use('/api/media', mediaRoutes); // Photos Page
+app.use('/api/mediahero', mediaHeroRoutes);
 
 
 const PORT = 5000;
