@@ -56,7 +56,7 @@ const contactLimiter = rateLimit({
     message: { error: 'Too many submissions. Please try again shortly.' }
 });
 
-app.use("/", (req, res) => {
+app.get("/", (req, res) => {
     res.send("Welcome to Green Hammer API");
 })
 
