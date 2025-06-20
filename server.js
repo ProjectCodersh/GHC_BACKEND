@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const path = require('path');
+require('dotenv').config();
+const rateLimit = require('express-rate-limit');
 
 
 // Videos Page
@@ -21,7 +23,8 @@ const serviceRoutes = require('./servicespage/routes/service');
 // Photos Page
 const mediaRoutes = require('./photospage/routes/media');
 const mediaHeroRoutes = require('./photospage/routes/mediaHero');
-
+// Contact Page
+const contactRoutes = require('./contactpage/routers/contactRoutes');
 
 // Middleware
 const app = express();
@@ -42,19 +45,26 @@ mongoose.connect('mongodb://127.0.0.1:27017/greenhammer', {
     .catch(err => console.log(err));
 
 
+// ✅ Contact Page Rate Limiter
+const contactLimiter = rateLimit({
+    windowMs: 60 * 1000, // 1 minute
+    max: 3,
+    message: { error: 'Too many submissions. Please try again shortly.' }
+});
+
 // Routes
 app.use('/api/videos', videoRoutes);    // Videos Page
 app.use('/api/videosectioninfo', videoSectionInfoRoutes);
 app.use('/api/teamshero', teamsHeroRoutes);     // Teams Page
 app.use('/api/teammembers', teamMemberRoutes);
 app.use('/api/teamgroupimage', teamGroupImageRoutes);
-app.use('/api/reviewhero', reviewHeroRoutes);   // Reviews Page
+app.use('/api/reviewhero', reviewHeroRoutes);       // Reviews Page
 app.use('/api/reviewcards', reviewCardsRoute);
-app.use('/api/blogs', blogRoutes); // Blog Page
-app.use('/api/services', serviceRoutes); // Services Page
-app.use('/api/media', mediaRoutes); // Photos Page
+app.use('/api/blogs', blogRoutes);      // Blog Page
+app.use('/api/services', serviceRoutes);        // Services Page
+app.use('/api/media', mediaRoutes);     // Photos Page
 app.use('/api/mediahero', mediaHeroRoutes);
-
+app.use('/api/contact', contactLimiter, contactRoutes);     // Contact Page
 
 const PORT = 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
