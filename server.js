@@ -25,6 +25,10 @@ const mediaRoutes = require('./photospage/routes/media');
 const mediaHeroRoutes = require('./photospage/routes/mediaHero');
 // Contact Page
 const contactRoutes = require('./contactpage/routers/contactRoutes');
+// Footer Content
+const footerContentRoutes = require('./footer/footercontent/footerContentRoutes');
+
+
 
 // Middleware
 const app = express();
@@ -52,6 +56,10 @@ const contactLimiter = rateLimit({
     message: { error: 'Too many submissions. Please try again shortly.' }
 });
 
+app.use("/", (req, res) => {
+    res.send("Welcome to Green Hammer API");
+})
+
 // Routes
 app.use('/api/videos', videoRoutes);    // Videos Page
 app.use('/api/videosectioninfo', videoSectionInfoRoutes);
@@ -65,6 +73,7 @@ app.use('/api/services', serviceRoutes);        // Services Page
 app.use('/api/media', mediaRoutes);     // Photos Page
 app.use('/api/mediahero', mediaHeroRoutes);
 app.use('/api/contact', contactLimiter, contactRoutes);     // Contact Page
+app.use('/api/footercontent', footerContentRoutes);
 
 const PORT = 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
