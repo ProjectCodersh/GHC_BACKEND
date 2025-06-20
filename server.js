@@ -56,11 +56,12 @@ const contactLimiter = rateLimit({
     message: { error: 'Too many submissions. Please try again shortly.' }
 });
 
-app.get("/", (req, res) => {
+app.get("/api/herosection", (req, res) => {
     res.send("Welcome to Green Hammer API");
 })
 
 // Routes
+// app.get("/api/videos",)
 app.use('/api/videos', videoRoutes);    // Videos Page
 app.use('/api/videosectioninfo', videoSectionInfoRoutes);
 app.use('/api/teamshero', teamsHeroRoutes);     // Teams Page
