@@ -30,6 +30,9 @@ const footerContentRoutes = require('./footer/footercontent/footerContentRoutes'
 const footerNavigationRoutes = require('./footer/footernavigation/footerNavigationRoutes');
 // Homepage Components
 const aboutUsRoutes = require('./homepage/aboutus/aboutUsRoutes');
+const faqRoutes = require('./homepage/faq/faqRoutes');
+
+
 
 
 // Middleware
@@ -76,6 +79,7 @@ app.use('/api/contact', contactLimiter, contactRoutes);     // Contact Page
 app.use('/api/footercontent', footerContentRoutes);   // Footer Component
 app.use('/api/footernavigation', footerNavigationRoutes); // Footer Navigation Component
 app.use('/api/about', aboutUsRoutes); // Homepage About Us Component
+app.use('/api/faq', faqRoutes);
 
 
 const PORT = 5000;
