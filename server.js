@@ -2,8 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const path = require('path');
-require('dotenv').config();
 const rateLimit = require('express-rate-limit');
+require('dotenv').config();
 
 
 // Videos Page
@@ -25,9 +25,11 @@ const mediaRoutes = require('./photospage/routes/media');
 const mediaHeroRoutes = require('./photospage/routes/mediaHero');
 // Contact Page
 const contactRoutes = require('./contactpage/routers/contactRoutes');
-// Footer Content
+// Footer Component
 const footerContentRoutes = require('./footer/footercontent/footerContentRoutes');
-
+const footerNavigationRoutes = require('./footer/footernavigation/footerNavigationRoutes');
+// Homepage Components
+const aboutUsRoutes = require('./homepage/aboutus/aboutUsRoutes');
 
 
 // Middleware
@@ -56,9 +58,6 @@ const contactLimiter = rateLimit({
     message: { error: 'Too many submissions. Please try again shortly.' }
 });
 
-app.get("/api/herosection", (req, res) => {
-    res.send("Welcome to Green Hammer API");
-})
 
 // Routes
 // app.get("/api/videos",)
@@ -74,7 +73,10 @@ app.use('/api/services', serviceRoutes);        // Services Page
 app.use('/api/media', mediaRoutes);     // Photos Page
 app.use('/api/mediahero', mediaHeroRoutes);
 app.use('/api/contact', contactLimiter, contactRoutes);     // Contact Page
-app.use('/api/footercontent', footerContentRoutes);
+app.use('/api/footercontent', footerContentRoutes);   // Footer Component
+app.use('/api/footernavigation', footerNavigationRoutes); // Footer Navigation Component
+app.use('/api/about', aboutUsRoutes); // Homepage About Us Component
+
 
 const PORT = 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
