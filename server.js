@@ -31,8 +31,7 @@ const footerNavigationRoutes = require('./footer/footernavigation/footerNavigati
 // Homepage Components
 const aboutUsRoutes = require('./homepage/aboutus/aboutUsRoutes');
 const faqRoutes = require('./homepage/faq/faqRoutes');
-
-
+const getStartedRoute = require('./homepage/getstarted/getStartedRoutes');
 
 
 // Middleware
@@ -43,7 +42,7 @@ app.use(express.json());
 
 // ✅ Serve static image files
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-// app.use('/uploads', express.static('/uploads'));
+app.use('/uploads', express.static('/uploads'));
 
 
 // MongoDB connection
@@ -79,7 +78,8 @@ app.use('/api/contact', contactLimiter, contactRoutes);     // Contact Page
 app.use('/api/footercontent', footerContentRoutes);   // Footer Component
 app.use('/api/footernavigation', footerNavigationRoutes); // Footer Navigation Component
 app.use('/api/about', aboutUsRoutes); // Homepage About Us Component
-app.use('/api/faq', faqRoutes);
+app.use('/api/faq', faqRoutes); // Homepage FAQ Component
+app.use('/api/getstarted', getStartedRoute); // Homepage Get Started Component
 
 
 const PORT = 5000;
