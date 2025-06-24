@@ -32,6 +32,8 @@ const footerNavigationRoutes = require('./footer/footernavigation/footerNavigati
 const aboutUsRoutes = require('./homepage/aboutus/aboutUsRoutes');
 const faqRoutes = require('./homepage/faq/faqRoutes');
 const getStartedRoute = require('./homepage/getstarted/getStartedRoutes');
+const heroRoute = require('./homepage/herosection/heroRoute');
+
 
 
 // Middleware
@@ -80,7 +82,7 @@ app.use('/api/footernavigation', footerNavigationRoutes); // Footer Navigation C
 app.use('/api/about', aboutUsRoutes); // Homepage About Us Component
 app.use('/api/faq', faqRoutes); // Homepage FAQ Component
 app.use('/api/getstarted', getStartedRoute); // Homepage Get Started Component
-
+app.use('/api/hero', heroRoute); // Homepage Hero Section Component
 
 const PORT = 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
